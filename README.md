@@ -10,7 +10,7 @@ Automatizzazione (speriamo) della procedura descritta <a href="https://circe.iit
   * [Calcolo della superificie elettrostatica](#calcolo-della-superificie-elettrostatica)
     + [Superficie molecolare](#superficie-molecolare)
     + [Pdb2pqr](#pdb2pqr)
-    + [APBS: calcolo del potenziale](#apbs:-calcolo-del-potenziale)
+    + [APBS](#apbs)
     + [Dal file dx alla superificie di potenziale](#dal-file-dx-alla-superificie-di-potenziale)
 
 ## Strumenti utilizzati
@@ -88,7 +88,7 @@ python3 -m pdb2pqr --apbs-input=nome_file.in -ff=<forcefield> nome_file.pdb nome
 <div class="note"><strong>NOTA</strong>: Come forcefield ho scelto l'opzione CHARMM per continuita' rispetto a 
 <a href="https://www.mdpi.com/2218-273X/11/12/1905" target="_blank">questo</a> lavoro.   </div>
 
-### APBS: calcolo del potenziale
+### APBS
 ```
 apbs --output-file=nome_file.dx nome_file.in
 ```
