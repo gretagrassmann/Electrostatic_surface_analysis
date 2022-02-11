@@ -47,4 +47,4 @@ surf_el <- clear_surf %>%
   mutate(el = surf_potential)
 protein=gsub('.{2}$','',file_path_sans_ext(basename(args[1])))
 print(protein)
-write_csv(surf_el, paste(args[3], paste0("surf_el_",protein,".csv", sep = "")))
+write_csv(surf_el, paste0(args[3], paste0("surf_el_",protein,".csv", sep = "")))

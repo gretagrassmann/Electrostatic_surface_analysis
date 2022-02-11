@@ -86,6 +86,7 @@ echo ${fname}
 mkdir -p -- ${output}/pdb2pqr
 mkdir -p -- ${output}/apbs
 mkdir -p -- ${output}/dms
+mkdir -p -- ${output}/electrostatic_surfaces
 
 . ${venv}/bin/activate
 
@@ -96,6 +97,11 @@ cd ${output}
 
 pdb2pqr30 --apbs-input=./${fname}.in -ff=CHARMM ${pdb} ./${fname}.pqr
 apbs --output-file=./${fname}.dx ./${fname}.in
+# apbs in alcune versioni salva come pqr.dx, in altre come pqr-PE0.dx
+if test -f ${output}/apbs/${fname}.pqr-PE0.dx; then
+    mv ${output}/apbs/${fname}.pqr-PE0.dx ${output}/apbs/${fname}.pqr.dx
+fi
+
 
 mv *.in *.log *.pqr ${output}/pdb2pqr
 mv *.mc *.dx ${output}/apbs
@@ -104,4 +110,4 @@ mv *.mc *.dx ${output}/apbs
 dms ${pdb} -n -a -o ${output}/dms/${fname}.dms
 awk 'sub(/.{14}/, "& ")' ${output}/dms/${fname}.dms > ${output}/dms/${fname}_2.dms
 
-Rscript ../egrid.R ${output}/dms/${fname}_2.dms ${output}/apbs/${fname}.pqr.dx ${output}/
+Rscript ../egrid.R ${output}/dms/${fname}_2.dms ${output}/apbs/${fname}.pqr.dx ${output}/electrostatic_surfaces/
