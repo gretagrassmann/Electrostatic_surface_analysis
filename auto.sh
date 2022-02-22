@@ -95,7 +95,7 @@ cd ${output}
 # pdb2pqr and apbs
 
 
-pdb2pqr30 --apbs-input=./${fname}.in -ff=CHARMM ${pdb} ./${fname}.pqr
+pdb2pqr30 --apbs-input=./${fname}.in -ff=CHARMM --whitespace ${pdb} ./${fname}.pqr
 apbs --output-file=./${fname}.dx ./${fname}.in
 # apbs in alcune versioni salva come pqr.dx, in altre come pqr-PE0.dx
 if test -f ${output}/apbs/${fname}.pqr-PE0.dx; then
@@ -110,4 +110,4 @@ mv *.mc *.dx ${output}/apbs
 dms ${pdb} -n -a -o ${output}/dms/${fname}.dms
 awk 'sub(/.{14}/, "& ")' ${output}/dms/${fname}.dms > ${output}/dms/${fname}_2.dms
 
-Rscript ../egrid.R ${output}/dms/${fname}_2.dms ${output}/apbs/${fname}.pqr.dx ${output}/electrostatic_surfaces/
+Rscript ../../egrid.R ${output}/dms/${fname}_2.dms ${output}/apbs/${fname}.pqr.dx ${output}/electrostatic_surfaces/
